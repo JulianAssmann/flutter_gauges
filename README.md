@@ -1,8 +1,8 @@
 # gauges
 
-![](docs/demo.png)
+![](doc/demo.png)
 
-Note: This project serves as a training exercise for myself in order to better understand the inner workings of Flutter and learn how to write custom `Widget`s, `Element`s and `RenderObject`s from scratch. As a result, the API might change heavily and I may not know about best practices or optimal solutions for many problems. So if you have any suggestions of improvement, please feel free to open an issue.
+*Note: This project serves as a training exercise for myself in order to better understand the inner workings of Flutter and learn how to write custom `Widget`s, `Element`s and `RenderObject`s from scratch. As a result, the API might change heavily and I may not know about best practices or optimal solutions for many problems. So if you have any suggestions of improvement, please feel free to open an issue.*
 
 
 ## Getting started
@@ -15,7 +15,7 @@ To use this plugin, add [flutter_gauges] as a [dependency in your pubspec.yaml f
 
 The basic widget for radial gauges is the `RadialGauge`. Multiple `axes` can be added. E. g. this is a gauge with three axes:
 
-<img src="docs/multiple_axes.png" width="200" height="200">
+<img src="doc/multiple_axes.png" width="200" height="200">
 
 This is the basic structure of a `RadialGauge`. See the following sections for more info on each of them.
 
@@ -111,7 +111,7 @@ RadialGauge(
 )
 ```
 
-<img src="docs/segments.png" width="200" height="200">
+<img src="doc/segments.png" width="200" height="200">
 
 #### Ticks
 
@@ -145,7 +145,7 @@ RadialGaugeAxis(
 )
 ```
 
-<img src="docs/ticks_in_between.png" width="200" height="200">
+<img src="doc/ticks_in_between.png" width="200" height="200">
 
 #### Pointer
 

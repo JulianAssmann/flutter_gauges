@@ -1,6 +1,6 @@
 name: gauges
 description: Fully customizable gauge widget.
-version: 0.0.1
+version: 0.0.1+1
 homepage: https://www.julianassmann.de/
 repository: https://github.com/JulianAssmann/flutter_gauges
 
