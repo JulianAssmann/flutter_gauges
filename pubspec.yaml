@@ -1,0 +1,19 @@
+name: gauges
+description: Fully customizable gauge widget.
+version: 0.0.1
+homepage: https://www.julianassmann.de/
+repository: https://github.com/JulianAssmann/flutter_gauges
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
