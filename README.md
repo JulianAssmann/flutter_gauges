@@ -15,7 +15,7 @@ To use this plugin, add [flutter_gauges] as a [dependency in your pubspec.yaml f
 
 The basic widget for radial gauges is the `RadialGauge`. Multiple `axes` can be added. E. g. this is a gauge with three axes:
 
-<img src="doc/multiple_axes.png" width="200" height="200">
+<img src="https://raw.githubusercontent.com/JulianAssmann/flutter_gauges/master/doc/multiple_axes.png" width="200" height="200">
 
 This is the basic structure of a `RadialGauge`. See the following sections for more info on each of them.
 
@@ -111,7 +111,7 @@ RadialGauge(
 )
 ```
 
-<img src="doc/segments.png" width="200" height="200">
+<img src="https://raw.githubusercontent.com/JulianAssmann/flutter_gauges/master/doc/segments.png" width="200" height="200">
 
 #### Ticks
 
@@ -145,7 +145,7 @@ RadialGaugeAxis(
 )
 ```
 
-<img src="doc/ticks_in_between.png" width="200" height="200">
+<img src="https://raw.githubusercontent.com/JulianAssmann/flutter_gauges/master/doc/ticks_in_between.png" width="200" height="200">
 
 #### Pointer
 

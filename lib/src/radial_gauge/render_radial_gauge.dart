@@ -14,25 +14,25 @@ class RenderRadialGauge extends RenderBox {
   ///
   /// The [minAngle], [maxAngle], [minValue], [maxValue], [value] and [axisWidth] arguments must not be null.
   RenderRadialGauge({
-    List<RadialGaugeAxis> axes,
-    double radius,
+    List<RadialGaugeAxis>? axes,
+    double? radius,
   })  : _radius = radius,
         _axes = axes {
     markNeedsPaint();
   }
 
   /// The radial axe s.
-  List<RadialGaugeAxis> _axes;
-  List<RadialGaugeAxis> get axes => _axes;
-  set axes(List<RadialGaugeAxis> value) {
+  List<RadialGaugeAxis>? _axes;
+  List<RadialGaugeAxis>? get axes => _axes;
+  set axes(List<RadialGaugeAxis>? value) {
     _axes = value;
     markNeedsPaint();
   }
 
   /// The current value of the gauge.
-  double _value;
-  double get value => _value;
-  set value(double value) {
+  double? _value;
+  double? get value => _value;
+  set value(double? value) {
     if (value == _value) return;
     _value = value;
     markNeedsPaint();
@@ -41,9 +41,9 @@ class RenderRadialGauge extends RenderBox {
   /// If non-null, requires the gauge to have this radius.
   ///
   /// If null, the gauge will pick the maximum radius possible to fit its parent.
-  double _radius;
-  double get radius => _radius;
-  set radius(double value) {
+  double? _radius;
+  double? get radius => _radius;
+  set radius(double? value) {
     if (value == _radius) return;
     _radius = value;
     markNeedsLayout();
@@ -63,7 +63,7 @@ class RenderRadialGauge extends RenderBox {
     } else {
       double maxRadius = 0.5 *
           min(constraints.widthConstraints().maxWidth, constraints.maxHeight);
-      double renderRadius = 2 * (_radius == null ? maxRadius : _radius);
+      double renderRadius = 2 * (_radius == null ? maxRadius : _radius!);
       size = Size(renderRadius, renderRadius);
     }
   }
@@ -74,7 +74,7 @@ class RenderRadialGauge extends RenderBox {
   void paint(PaintingContext context, Offset offset) {
     // Draw all the axes of the gauge.
     if (axes != null) {
-      for (var axis in axes) {
+      for (var axis in axes!) {
         _paintAxis(axis, context, offset);
       }
     }
@@ -89,10 +89,11 @@ class RenderRadialGauge extends RenderBox {
 
     if (axis.offsetAbsolute != null) {
       // Translate the canvas according to the axis' offset.
-      context.canvas.translate(axis.offsetAbsolute.dx, axis.offsetAbsolute.dy);
+      context.canvas
+          .translate(axis.offsetAbsolute!.dx, axis.offsetAbsolute!.dy);
     } else if (axis.offset != null) {
       context.canvas.translate(
-          axis.offset.dx * size.width / 2, axis.offset.dy * size.width / 2);
+          axis.offset!.dx * size.width / 2, axis.offset!.dy * size.width / 2);
     }
 
     // Rotate the canvas according to the axis' rotation.
@@ -114,7 +115,7 @@ class RenderRadialGauge extends RenderBox {
 
     // Draw all segments of the axis.
     if (axis.segments != null) {
-      for (var segment in axis.segments) {
+      for (var segment in axis.segments!) {
         _paintSegment(axis, segment, context);
       }
     }
@@ -140,11 +141,11 @@ class RenderRadialGauge extends RenderBox {
     if (segment.widthAbsolute != null) {
       renderWidth = segment.widthAbsolute;
     } else if (segment.width != null) {
-      renderWidth = segment.width * size.width / 2;
+      renderWidth = segment.width! * size.width / 2;
     } else if (axis.widthAbsolute != null) {
       renderWidth = axis.widthAbsolute;
     } else if (axis.width != null) {
-      renderWidth = axis.width * size.width / 2;
+      renderWidth = axis.width! * size.width / 2;
     } else {
       renderWidth = 0;
     }
@@ -154,11 +155,11 @@ class RenderRadialGauge extends RenderBox {
     if (segment.radiusAbsolute != null) {
       innerRadius = segment.radiusAbsolute;
     } else if (segment.radius != null) {
-      innerRadius = segment.radius * size.width / 2;
+      innerRadius = segment.radius! * size.width / 2;
     } else if (axis.radiusAbsolute != null) {
       innerRadius = axis.radiusAbsolute;
     } else if (axis.radius != null) {
-      innerRadius = axis.radius * size.width / 2;
+      innerRadius = axis.radius! * size.width / 2;
     } else {
       innerRadius = 0;
     }
@@ -187,30 +188,30 @@ class RenderRadialGauge extends RenderBox {
 
       /// The points of the outline of the segment
       final points = [
-        Offset((innerRadius) * cos(maxAngle * degrees2Radians) + size.width / 2,
-            (innerRadius) * sin(maxAngle * degrees2Radians) + size.height / 2),
-        Offset((innerRadius) * cos(minAngle * degrees2Radians) + size.width / 2,
-            (innerRadius) * sin(minAngle * degrees2Radians) + size.height / 2),
-        Offset((outerRadius) * cos(minAngle * degrees2Radians) + size.width / 2,
-            (outerRadius) * sin(minAngle * degrees2Radians) + size.height / 2),
-        Offset((outerRadius) * cos(maxAngle * degrees2Radians) + size.width / 2,
-            (outerRadius) * sin(maxAngle * degrees2Radians) + size.height / 2),
+        Offset(innerRadius * cos(maxAngle * degrees2Radians) + size.width / 2,
+            innerRadius * sin(maxAngle * degrees2Radians) + size.height / 2),
+        Offset(innerRadius * cos(minAngle * degrees2Radians) + size.width / 2,
+            innerRadius * sin(minAngle * degrees2Radians) + size.height / 2),
+        Offset(outerRadius * cos(minAngle * degrees2Radians) + size.width / 2,
+            outerRadius * sin(minAngle * degrees2Radians) + size.height / 2),
+        Offset(outerRadius * cos(maxAngle * degrees2Radians) + size.width / 2,
+            outerRadius * sin(maxAngle * degrees2Radians) + size.height / 2),
       ];
       final innerCirclePoint = Offset(
-          (innerRadius) *
+          innerRadius *
                   cos((minAngle + (maxAngle - minAngle) / 2) *
                       degrees2Radians) +
               size.width / 2,
-          (innerRadius) *
+          innerRadius *
                   sin((minAngle + (maxAngle - minAngle) / 2) *
                       degrees2Radians) +
               size.height / 2);
       final outerCirclePoint = Offset(
-          (outerRadius) *
+          outerRadius *
                   cos((minAngle + (maxAngle - minAngle) / 2) *
                       degrees2Radians) +
               size.width / 2,
-          (outerRadius) *
+          outerRadius *
                   sin((minAngle + (maxAngle - minAngle) / 2) *
                       degrees2Radians) +
               size.height / 2);
@@ -247,11 +248,12 @@ class RenderRadialGauge extends RenderBox {
       /// The paint used to fill the segment's outline.
       final segmentFillPaint = Paint();
       if (segment.gradient != null) {
-        segmentFillPaint.shader = segment.gradient.createShader(Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2),
-            radius: innerRadius));
+        segmentFillPaint.shader = segment.gradient!.createShader(
+            Rect.fromCircle(
+                center: Offset(size.width / 2, size.height / 2),
+                radius: innerRadius));
       } else {
-        segmentFillPaint.color = segment.color;
+        segmentFillPaint.color = segment.color!;
       }
       segmentFillPaint..strokeWidth = 0;
       segmentFillPaint..style = PaintingStyle.fill;
@@ -262,9 +264,9 @@ class RenderRadialGauge extends RenderBox {
 
   /// Paints the [RadialTick]s for the given [segment].
   void _paintSegmentTicks(PaintingContext context, RadialGaugeSegment segment,
-      double innerRadius, double outerRadius) {
+      double? innerRadius, double? outerRadius) {
     if (segment.ticks != null) {
-      for (RadialTicks tick in segment.ticks) {
+      for (RadialTicks tick in segment.ticks!) {
         _paintTicks(context, segment, innerRadius, outerRadius, tick);
       }
     }
@@ -278,15 +280,15 @@ class RenderRadialGauge extends RenderBox {
   /// [parentTicks] is the parent [RadialTicks]. This is required
   /// in order to calculate ticks in between parent ticks.
   void _paintTicks(PaintingContext context, RadialGaugeSegment segment,
-      double innerRadius, double outerRadius, RadialTicks tick,
-      {RadialTicks parentTicks}) {
+      double? innerRadius, double? outerRadius, RadialTicks tick,
+      {RadialTicks? parentTicks}) {
     final tickPaint = Paint()
       ..strokeWidth = tick.thickness
       ..color = tick.color;
 
     double start = size.width / 2;
     double end = size.width / 2;
-    double length = 0;
+    double? length = 0;
 
     if (tick.lengthAbsolute != null) {
       length = tick.lengthAbsolute;
@@ -295,13 +297,13 @@ class RenderRadialGauge extends RenderBox {
     }
 
     if (tick.alignment == RadialTickAxisAlignment.inside) {
-      start -= outerRadius;
-      end -= outerRadius - length;
+      start -= outerRadius!;
+      end -= outerRadius - length!;
     } else if (tick.alignment == RadialTickAxisAlignment.below) {
-      start -= innerRadius;
-      end -= innerRadius - length;
+      start -= innerRadius!;
+      end -= innerRadius - length!;
     } else if (tick.alignment == RadialTickAxisAlignment.above) {
-      start -= outerRadius + length;
+      start -= outerRadius! + length!;
       end -= outerRadius;
     }
 
@@ -310,7 +312,7 @@ class RenderRadialGauge extends RenderBox {
     context.canvas.rotate(-pi);
     context.canvas.translate(-size.width / 2, -size.height / 2);
 
-    for (double angle in tick.getAngles(segment, parentTicks: parentTicks)) {
+    for (double angle in tick.getAngles(segment, parentTicks: parentTicks)!) {
       context.canvas.save();
       context.canvas.translate(size.width / 2, size.height / 2);
       context.canvas.rotate(angle * degrees2Radians);
@@ -324,7 +326,7 @@ class RenderRadialGauge extends RenderBox {
 
     // Recursively draw all children
     if (tick.children != null) {
-      for (var child in tick.children) {
+      for (var child in tick.children!) {
         _paintTicks(context, segment, innerRadius, outerRadius, child,
             parentTicks: tick);
       }
@@ -333,7 +335,7 @@ class RenderRadialGauge extends RenderBox {
 
   void _paintPointers(PaintingContext context, RadialGaugeAxis axis) {
     if (axis.pointers != null) {
-      for (var pointer in axis.pointers) {
+      for (var pointer in axis.pointers!) {
         if (pointer is RadialNeedlePointer) {
           _paintNeedlePointer(context, axis, pointer);
         }
@@ -345,8 +347,8 @@ class RenderRadialGauge extends RenderBox {
       RadialNeedlePointer pointer) {
     // Clip the value of the needle pointer.
     var value = pointer.value;
-    if (pointer.maxValue != null) value = min(value, pointer.maxValue);
-    if (pointer.minValue != null) value = max(value, pointer.minValue);
+    if (pointer.maxValue != null) value = min(value, pointer.maxValue!);
+    if (pointer.minValue != null) value = max(value, pointer.minValue!);
 
     value = min(max(value, axis.minValue), axis.maxValue);
     var angle = axis.minAngle +
@@ -381,7 +383,7 @@ class RenderRadialGauge extends RenderBox {
         size.height / 2 - thicknessMax / 2, length, thicknessMax);
 
     if (pointer.gradient != null) {
-      needlePaint.shader = pointer.gradient.createShader(needleRect);
+      needlePaint.shader = pointer.gradient!.createShader(needleRect);
     } else {
       needlePaint.color = pointer.color;
     }

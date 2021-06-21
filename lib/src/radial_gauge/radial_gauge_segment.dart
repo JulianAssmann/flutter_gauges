@@ -20,7 +20,7 @@ class RadialGaugeSegment {
   final double maxValue;
 
   /// The configurations for the ticks of this segment.
-  final List<RadialTicks> ticks;
+  final List<RadialTicks>? ticks;
 
   /// The width of the segment in fractions of the gauge radius.
   ///
@@ -28,7 +28,7 @@ class RadialGaugeSegment {
   ///
   /// If bot [widthAbsolute] and [width] are null,
   /// the width of the [RadialGaugeAxis] this segment belongs to is used.
-  final double width;
+  final double? width;
 
   /// The width of the segment in pixels.
   ///
@@ -36,7 +36,7 @@ class RadialGaugeSegment {
   ///
   /// If bot [widthAbsolute] and [width] are null,
   /// the width of the [RadialGaugeAxis] this segment belongs to is used.
-  final double widthAbsolute;
+  final double? widthAbsolute;
 
   /// The radius of this segments in fractions of the gauge radius.
   ///
@@ -44,7 +44,7 @@ class RadialGaugeSegment {
   ///
   /// If bot [radius] and [radiusAbsolute] is are null,
   /// the radius of the [RadialGaugeAxis] this segment belongs to is used.
-  final double radius;
+  final double? radius;
 
   /// The radius of this segment in pixels.
   ///
@@ -52,30 +52,30 @@ class RadialGaugeSegment {
   ///
   /// If bot [radius] and [radiusAbsolute] is are null,
   /// the radius of the [RadialGaugeAxis] this segment belongs to is used.
-  final double radiusAbsolute;
+  final double? radiusAbsolute;
 
   /// A color gradient to use when drawing the background of the segment.
   ///
   /// If this is specified, [color] has no effect.
-  final Gradient gradient;
+  final Gradient? gradient;
 
   /// The color to fill in the background of the segment.
   ///
   /// This is ignored if [gradient] is non-null.
-  final Color color;
+  final Color? color;
 
   /// A border to draw above the the [color] or [gradient].
-  final Border border;
+  final Border? border;
 
   /// If non-null, the corners of the segment are rounded by this [BorderRadius].
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
 
   ///The blend mode applied to the [color] or [gradient] background of the segment.
   ///
   /// If no [backgroundBlendMode] is provided then the default painting blend mode is used.
   ///
   /// If no [color] or [gradient] is provided then the blend mode has no impact.
-  final BlendMode backgroundBlendMode;
+  final BlendMode? backgroundBlendMode;
 
   /// Creates a radial gauge segment.
   ///
@@ -87,11 +87,11 @@ class RadialGaugeSegment {
   /// The body of the segment is painted in layers. The bottom-most layer is the
   /// [color], which fills the segment. Above that is the [gradient], which also fills
   /// the segment.
-  const RadialGaugeSegment({
-      @required this.minValue,
-      @required this.maxValue,
-      @required this.minAngle,
-      @required this.maxAngle,
+  const RadialGaugeSegment(
+      {required this.minValue,
+      required this.maxValue,
+      required this.minAngle,
+      required this.maxAngle,
       this.ticks,
       this.width,
       this.widthAbsolute,
@@ -106,21 +106,23 @@ class RadialGaugeSegment {
             backgroundBlendMode == null || color != null || gradient != null,
             "backgroundBlendMode applies to RadialGaugeSegments's background color or "
             'gradient, but no color or gradient was provided.'),
-        assert(maxAngle - minAngle <= 360.0, "The difference between maxAngle and minAngle must be less or equal to 360°"),
-        assert(maxAngle > minAngle, "The maxAngle must be greater than the minAngle");
+        assert(maxAngle - minAngle <= 360.0,
+            "The difference between maxAngle and minAngle must be less or equal to 360°"),
+        assert(maxAngle > minAngle,
+            "The maxAngle must be greater than the minAngle");
 
   /// Creates a copy of the instance and replaces the given variables of that copy.
   RadialGaugeSegment copyWith(
-      {double minValue,
-      double maxValue,
-      double minAngle,
-      double maxAngle,
-      double width,
-      Gradient gradient,
-      Color color,
-      Border border,
-      BorderRadiusGeometry borderRadius,
-      BlendMode backgroundBlendMode}) {
+      {double? minValue,
+      double? maxValue,
+      double? minAngle,
+      double? maxAngle,
+      double? width,
+      Gradient? gradient,
+      Color? color,
+      Border? border,
+      BorderRadiusGeometry? borderRadius,
+      BlendMode? backgroundBlendMode}) {
     return RadialGaugeSegment(
       minValue: minValue ?? this.minValue,
       maxValue: maxValue ?? this.maxValue,

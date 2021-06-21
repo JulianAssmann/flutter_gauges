@@ -1,11 +1,11 @@
 name: gauges
-description: Fully customizable gauge widget.
-version: 0.0.1+1
+description: A library for customizable gauges (radial gauges only for now).
+version: 1.0.0
 homepage: https://www.julianassmann.de/
 repository: https://github.com/JulianAssmann/flutter_gauges
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

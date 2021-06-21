@@ -34,7 +34,7 @@ class Interval {
   /// Creates a copy of this [Interval] but with the
   /// given fields replaced with the new values.
   Interval copyWith(
-      {double min, double max, bool minIncluded, bool maxIncluded}) {
+      {double? min, double? max, bool? minIncluded, bool? maxIncluded}) {
     return Interval(
       min ?? this.min,
       max ?? this.max,

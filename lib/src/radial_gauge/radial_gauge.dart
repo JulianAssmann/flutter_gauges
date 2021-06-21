@@ -5,25 +5,23 @@ import 'radial_gauge_axis.dart';
 
 /// A radial gauge.
 class RadialGauge extends LeafRenderObjectWidget {
-  final double radius;
+  final double? radius;
 
   final List<RadialGaugeAxis> axes;
 
   const RadialGauge({
-    @required this.axes,
+    required this.axes,
     this.radius,
   }) : assert(axes != null && axes.length > 0);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderRadialGauge(
-      radius: radius,
-      axes: axes
-    );
+    return RenderRadialGauge(radius: radius, axes: axes);
   }
 
   @override
-  void updateRenderObject(BuildContext context, RenderRadialGauge renderObject) {
+  void updateRenderObject(
+      BuildContext context, RenderRadialGauge renderObject) {
     renderObject
       ..radius = radius
       ..axes = axes;

@@ -16,8 +16,10 @@ class DemoPage {
 List<DemoPage> demoPages = [
   DemoPage(
       'Segments', 'Differently colored segments', '/segments', SegmentsPage()),
-  DemoPage('Ticks in between', 'Ticks in between parent ticks', '/ticks_in_between', TicksInBetweenPage()),
-  DemoPage('Multiple axes', 'Multiple axes in one gauge', '/multiple_axes', MultipleAxesPage()),
+  DemoPage('Ticks in between', 'Ticks in between parent ticks',
+      '/ticks_in_between', TicksInBetweenPage()),
+  DemoPage('Multiple axes', 'Multiple axes in one gauge', '/multiple_axes',
+      MultipleAxesPage()),
 ];
 
 getRoutes(BuildContext context) {
