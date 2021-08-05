@@ -53,8 +53,8 @@ RadialGauge(
 
 An axes has a few important properties:
 
-- `min`: The minimum value of this axes
-- `max`: The maximum value of this axes
+- `min`: The minimum value of this axis
+- `max`: The maximum value of this axis
 - `minAngle`: The angle in degrees `min` is mapped to
 - `maxAngle`: The angle in degrees `max` is mapped to
 - `radius`: The radius of the axes as a fraction of the `RadialGauge`'s size
