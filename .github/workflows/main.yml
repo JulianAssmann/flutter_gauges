@@ -7,14 +7,12 @@ on:
 jobs:
   build:
     name: Build Web for Github Pages
-    env:
-      my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'dev'
+          channel: 'stable'
       - run: |
           cd example
           flutter config --enable-web
@@ -28,7 +26,7 @@ jobs:
           git config --global user.email git@julianassmann.de
           git config --global user.name "Julian Aßmann"
           git status
-          git remote add origin https://${{secrets.commit_secret}}@github.com/JulianAssmann/flutter_gauges.git
+          git remote add origin https://github.com/JulianAssmann/flutter_gauges.git
           git checkout -b gh-pages
           git add --all
           git commit -m "Update web"
