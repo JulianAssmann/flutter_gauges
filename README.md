@@ -1,5 +1,7 @@
 # gauges
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/julianassmann)
+
 ![](doc/demo.png)
 
 *Note: This project serves as a training exercise for myself in order to better understand the inner workings of Flutter and learn how to write custom `Widget`s, `Element`s and `RenderObject`s from scratch. As a result, the API might change heavily and I may not know about best practices or optimal solutions for many problems. So if you have any suggestions of improvement, please feel free to open an issue.*
